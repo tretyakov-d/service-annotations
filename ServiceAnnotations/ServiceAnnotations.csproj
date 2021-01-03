@@ -3,6 +3,11 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <LangVersion>default</LangVersion>
+        <Authors>Dennis Tretyakov</Authors>
+        <PackageTags>ServiceAnnotations;DependencyInjection</PackageTags>
+        <Description>A library provides attributes and utilities to build a dependency injection container using class attributes.</Description>
+        <RepositoryUrl>https://github.com/tretyakov-d/service-annotations</RepositoryUrl>
+        
     </PropertyGroup>
 
     <ItemGroup>

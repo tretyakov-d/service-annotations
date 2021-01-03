@@ -1,0 +1,38 @@
+name: .NET Publish
+
+on:
+  push:
+    tags:
+      - v*
+    
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Resolve Version
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.0.x
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Run Tests
+        run: dotnet test --configuration Release --no-build --verbosity normal
+  
+      - name: Pack
+        run: dotnet pack --no-build --configuration Release -p:PackageVersion=$RELEASE_VERSION
+        
+      - name: Push
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: dotnet nuget push **/ServiceAnnotations.$RELEASE_VERSION.nupkg --source https://api.nuget.org/v3/index.json --api-key $NUGET_API_KEY
