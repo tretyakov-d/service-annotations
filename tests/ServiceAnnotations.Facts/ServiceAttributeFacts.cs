@@ -158,7 +158,7 @@ namespace ServiceAnnotations.Tests
             mappingDescriptor.Lifetime.Should().Be(lifetime);
             mappingDescriptor.ImplementationFactory.Should().NotBeNull();
 
-            ServiceProvider sp = serviceCollection.BuildServiceProvider();
+            IServiceProvider sp = serviceCollection.BuildServiceProvider();
 
             var selfInstance = sp.GetService(toType);
             var mappedInstance = sp.GetService(fromType);

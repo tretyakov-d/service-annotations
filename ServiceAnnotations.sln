@@ -1,8 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceAnnotations", "ServiceAnnotations\ServiceAnnotations.csproj", "{74FAFCE8-B3CC-45FE-8251-99C9CAE5E73A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceAnnotations", "src\ServiceAnnotations\ServiceAnnotations.csproj", "{74FAFCE8-B3CC-45FE-8251-99C9CAE5E73A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceAnnotations.Tests", "ServiceAnnotations.Tests\ServiceAnnotations.Tests.csproj", "{B545E18B-1288-4EC1-8820-9B26DE019606}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceAnnotations.Facts", "tests\ServiceAnnotations.Facts\ServiceAnnotations.Facts.csproj", "{B545E18B-1288-4EC1-8820-9B26DE019606}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A4C598AE-CACA-47C2-87C6-D22CFE98E788}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{D78DBE67-8BF9-44BA-AB53-745EEC5A6748}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +22,9 @@ Global
 		{B545E18B-1288-4EC1-8820-9B26DE019606}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B545E18B-1288-4EC1-8820-9B26DE019606}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B545E18B-1288-4EC1-8820-9B26DE019606}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{74FAFCE8-B3CC-45FE-8251-99C9CAE5E73A} = {A4C598AE-CACA-47C2-87C6-D22CFE98E788}
+		{B545E18B-1288-4EC1-8820-9B26DE019606} = {D78DBE67-8BF9-44BA-AB53-745EEC5A6748}
 	EndGlobalSection
 EndGlobal
