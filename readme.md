@@ -24,7 +24,7 @@ class MyService
 }
 
 [Service(ServiceLifetime.Scoped, typeof(IMyServiceDependency))]
-class MyServiceDependency 
+class MyServiceDependency : IMyServiceDependency
 { 
     // the class will be registered with Scoped lifetime as IMyServiceDependency
 }
@@ -103,15 +103,15 @@ static class MyModule {
 
 *practical example with HttpClient*
 ```c#
-[Service(ServiceLifetime.Transient), ConfigureServices("RegisterHttpClient")]
+[Service(ServiceLifetime.Transient), ConfigureServices(nameof(RegisterHttpClient))]
 class MyService {
     
     public MyService(HttpClient myHttpClient) { }
     
     static void RegisterHttpClient(IServiceCollection serviceColleciton, IConfiguration configuration) {
         serviceCollection.AddHttpClient<MyService>(httpClient => {
-            httpClient.BaseUrl = new Uri(configuration.GetConnectionString("myServiceEndpoint")
-        })
+            httpClient.BaseUrl = new Uri(configuration.GetConnectionString("myServiceEndpoint"));
+        });
     }
     
 }
@@ -167,7 +167,7 @@ class MyClass {
 ```
 **Case #1 Solution #2**: Specify method name in ConfigureServicesAttribute
 ```c#
-[ConfigureServices("RegisterServices")]
+[ConfigureServices(nameof(RegisterServices))]
 class MyClass {
     static void RegisterServices(IServiceCollection serviceCollection) {}
 }
@@ -175,7 +175,7 @@ class MyClass {
 
 **Case #2**: ConfigureServicesAttribute looks for static method RegisterServices, but the method defined in class is not static.
 ```c#
-[ConfigureServices("RegisterServices")]
+[ConfigureServices(nameof(RegisterServices))]
 class MyClass {
     void RegisterServices(IServiceCollection serviceCollection) {}
 }
@@ -183,7 +183,7 @@ class MyClass {
 
 **Case #2 Solution**: Ensure method is static
 ```c#
-[ConfigureServices("RegisterServices")]
+[ConfigureServices(nameof(RegisterServices))]
 class MyClass {
     void RegisterServices(IServiceCollection serviceCollection) {}
 }
